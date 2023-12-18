@@ -1,0 +1,27 @@
+@import "./normalize.css";
+@import "./global.css";
+@import "./header.css";
+@import "./preloader.css";
+@import "./news.css";
+@import "./footer.css";
+
+
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto Light'), 
+    local('RobotoLight'), 
+    local('Roboto-Light'),  
+    url('../fonts/roboto-light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: local('Roboto Bold'), 
+    local('RobotoBold'), 
+    local('Roboto-Bold'), 
+    url('../fonts/roboto-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}

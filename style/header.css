@@ -1,0 +1,128 @@
+.header__container {
+  padding: 20px 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.header__form {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.header__search-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 44px;
+  position: relative;
+}
+
+.header__search-input {
+  width: 100%;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 65px;
+  border: 1px solid #e6e6e6;
+  border-radius: 22px;
+  outline: none;
+}
+
+.header__search-input::placeholder {
+  font-size: 14px;
+  line-height: 0.8;
+  color: #212121;
+}
+
+.header__search-input:focus-visible {
+  border: 1px solid #f2994a;
+}
+
+.header__search-button {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #212121;
+  transition: color 0.3s ease-in-out;
+}
+
+.header__search-button:hover {
+  color: #f2994a;
+}
+
+.header__search-button:active {
+  color: #b9b9b9;
+}
+
+/*  select - choices.js  */
+.choices {
+  width: 320px;
+  height: 44px;
+}
+
+.choices__inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 22px;
+  background-color: #ffffff;
+}
+
+.choices[data-type*=select-one]:after {
+  right: 20px;
+}
+
+.choices.is-focused.is-open .choices__inner {
+  border: 1px solid #f2994a;
+}
+
+.choises__list--single {
+  padding-right: 40px;
+}
+
+.choices__list--dropdown.is-active {
+  border: 1px solid #f2994a;
+}
+
+.choices__item--selectable {
+  font-size: 14px;
+  color: #212121;
+}
+
+@media (max-width: 860px) {
+  .header__container {
+    padding: 20px 70px;
+    flex-wrap: wrap;
+  }
+
+  .header__form {
+    flex-wrap: wrap;
+  }
+
+  .header__logo {
+    margin: 0 auto;
+  }
+
+  .header__search-wrapper {
+    max-width: none;
+  }
+
+  .choices {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .header__container {
+    padding: 20px 30px;
+  }
+}
