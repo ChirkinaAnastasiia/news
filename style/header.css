@@ -83,6 +83,7 @@
 
 .choices.is-focused.is-open .choices__inner {
   border: 1px solid #f2994a;
+  border-radius: 22px 22px 0 0;
 }
 
 .choises__list--single {
@@ -91,6 +92,7 @@
 
 .choices__list--dropdown.is-active {
   border: 1px solid #f2994a;
+  border-radius: 0 0 22px 22px;
 }
 
 .choices__item--selectable {
