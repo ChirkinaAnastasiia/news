@@ -7,3 +7,4 @@ export const getData = () => Promise.all([
     callback: renderCard,
   }),
 ]);
+

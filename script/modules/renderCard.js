@@ -59,5 +59,6 @@ export const renderCard = (err, data) => {
     return template.append(...data);
   });
 
+  console.log(template);
   return template;
 };
