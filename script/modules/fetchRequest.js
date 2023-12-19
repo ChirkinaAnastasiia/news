@@ -1,4 +1,4 @@
-import {URL, API_KEY, PAGE} from './const.js';
+import {API_KEY, PAGE} from './const.js';
 
 const fetchRequest = async (postfix, value, page, {
   method = 'GET',
@@ -14,7 +14,7 @@ const fetchRequest = async (postfix, value, page, {
     if (body) options.body = JSON.stringify(body);
     if (headers) options.headers = headers;
 
-    const response = await fetch(`${URL}${postfix}${value}${PAGE}${page}${API_KEY}`, options);
+    const response = await fetch(`https://newsapi.org/v2/${postfix}${value}${PAGE}${page}&apiKey=${API_KEY}`, options);
 
     if (response.ok) {
       const data = await response.json();
