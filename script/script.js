@@ -1,11 +1,19 @@
 import './modules/choices.js';
-import {freshNewsList} from './modules/getElement.js';
-import {getData} from './modules/serviceAPI.js';
+import {freshNewsList, freshNewsTitle} from './modules/getElement.js';
+import {getHeadlinesData} from './modules/serviceAPI.js';
+import {controlForm} from './modules/conrtol.js';
+import preload from './modules/preload.js';
 
 
-getData().then(data => {
-  console.log(data);
-  console.log(data[0]);
-  console.log(freshNewsList);
-  freshNewsList.append(data[0]);
+getHeadlinesData(8).then(data => {
+  if (data[0]) {
+    preload.remove();
+
+    freshNewsList.append(data[0]);
+  } else {
+    freshNewsTitle.textContent =
+      'Что-то пошло не так. Попробуйте чуть позже...';
+  }
 });
+
+controlForm();

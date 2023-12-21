@@ -1,39 +1,67 @@
-import {freshNewsTitle} from './getElement.js';
+import {
+  searchNewsTitle,
+  freshNewsTitle,
+  form,
+  freshNewsList,
+  searchNewsList} from './getElement.js';
+import preload from './preload.js';
+import declOfNum from './declOfNum.js';
 
-const getImage = url => new Promise(resolve => {
+
+const getImage = url => {
   const image = new Image(270, 200);
-
-  image.addEventListener('load', () => {
-    resolve(image);
-  });
-
-  image.addEventListener('error', () => {
-    image.src = '../../image/noimage.jpg';
-    resolve(image);
-  });
 
   image.src = url || '../../image/noimage.jpg';
   image.classList.add('news__image');
 
   return image;
-});
+};
+
+const getCorrectDate = isoDate => {
+  const date = new Date(isoDate);
+  const fullDate = date.toLocaleString('en-GB', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+
+  const fullTime = date.toLocaleString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  return `<span class="news__date">${fullDate}</span>${fullTime}`;
+};
 
 export const renderCard = (err, data) => {
   if (err) {
     console.warn(err, data);
-    freshNewsTitle.textContent = 'Что-то пошло не так. Попробуйте чуть позже...';
+    preload.remove();
     return;
   }
 
-  const template = document.createDocumentFragment();
-  // newsList.textContent = '';
+  searchNewsList.innerHTML = '';
+  freshNewsList.innerHTML = '';
 
-  const news = data.articles.map(async ({urlToImage, title, url, description, publishedAt, author, source}) => {
+  const count = data.totalResults;
+  const findWord = declOfNum(count, ['найден', 'найдено', 'найдено']);
+  const resultWord =
+    declOfNum(count, ['результат', 'результата', 'результатов']);
+
+  searchNewsTitle.textContent =
+    `По вашему запросу “${form.search.value}” ` +
+    `${findWord} ${count} ${resultWord}`;
+
+  freshNewsTitle.textContent = 'Свежие новости';
+
+  const template = document.createDocumentFragment();
+
+  const news = data.articles.map(({
+    urlToImage, title, url, description, publishedAt, author, source}) => {
     const card = document.createElement('li');
     card.classList.add('news__item');
 
-    const image = await getImage(urlToImage);
-    image.alt = title || '';
+    const image = getImage(urlToImage);
     card.append(image);
 
     card.insertAdjacentHTML('beforeend', `
@@ -45,7 +73,7 @@ export const renderCard = (err, data) => {
 
       <div class="news__footer">
         <time class="news__datetime" datetime="${publishedAt}">
-          <span class="news__date">16/03/2022</span>11:06
+          ${getCorrectDate(publishedAt)}
         </time>
 
         <p class="news__author">${author || source.name || ''}</p>
@@ -55,10 +83,7 @@ export const renderCard = (err, data) => {
     return card;
   });
 
-  Promise.all(news).then(data => {
-    return template.append(...data);
-  });
+  template.append(...news);
 
-  console.log(template);
   return template;
 };

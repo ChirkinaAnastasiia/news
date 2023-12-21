@@ -1,0 +1,32 @@
+.preload-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%) scale(1, -1);
+}
+
+.preload-overlay svg {
+  width: 180px;
+  height: 180px;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .preload-overlay {
+    top: 400px;
+  }
+
+  .preload-overlay svg {
+    width: 120px;
+    height: 120px;
+  }
+}

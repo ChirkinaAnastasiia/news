@@ -19,6 +19,11 @@
   gap: 40px 20px;
 }
 
+.news__item {
+  display: flex;
+  flex-direction: column;
+}
+
 .news__image {
   width: 100%;
   height: 200px;
@@ -62,6 +67,7 @@
 }
 
 .news__footer {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
   font-size: 10px;
